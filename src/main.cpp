@@ -58,16 +58,6 @@ void setup() {
     WiFi.begin(ssid, password);
 
 
-  // Überprüfen Sie den Status der WLAN-Verbindung
-  if (WiFi.status() == WL_CONNECTED) {
-    Serial.println("Verbunden mit WLAN");
-  } else {
-    Serial.println("Verbindung zum WLAN fehlgeschlagen");
-  }
-
-  Serial.println("ssid: "); Serial.println(ssid);
-  Serial.println("password: "); Serial.println(password);
-
 
   // Starten Sie den Webserver
   server.on("/", HTTP_GET, handleRoot);
