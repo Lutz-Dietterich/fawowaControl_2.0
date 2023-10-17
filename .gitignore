@@ -6,6 +6,6 @@
 
 # Eigene Einträge
 .DS_Store
-.data/config.txt
-.gitignore
+.config.txt
+
 
