@@ -6,6 +6,6 @@
 
 # Eigene Einträge
 .DS_Store
-.config.txt
+data/config.txt
 
 
