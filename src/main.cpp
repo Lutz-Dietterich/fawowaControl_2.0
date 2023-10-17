@@ -73,6 +73,12 @@ void setup() {
   server.on("/", HTTP_GET, handleRoot);
   server.on("/data", HTTP_GET, handleData);
   server.on("/setTargets", HTTP_GET, handleSetTargets);
+  server.on("/styles.css", HTTP_GET, [](){
+    File file = LittleFS.open("/styles.css", "r");
+    size_t sent = server.streamFile(file, "text/css");
+    file.close();
+  });
+
   server.begin();
 }
 
