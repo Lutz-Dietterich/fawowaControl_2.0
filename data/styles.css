@@ -1,0 +1,94 @@
+body {
+    background-image: url('https://res.cloudinary.com/dnojoo4vt/image/upload/v1685634485/samples/landscapes/nature-mountains.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.9);
+    width: 50%;
+    margin: 5vh auto 0 auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    margin: auto;
+}
+
+.ist {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    background-color: blue;
+    witdh: 80%;
+}
+
+.istWerte {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: green;
+    witdh: 30%;
+    padding: 10px;
+}
+
+.column {
+    flex-direction: column;
+}
+
+.button-wrapper {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.button {
+    width: 3rem;
+    height: 3rem;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.button:hover {
+    background-color: rgba(0, 128, 0, 0.3);
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+h2 {
+    padding: 0 10px 0 10px;
+    margin: 0 0 0 0;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        width: 80%;
+    }
+    .header-wrapper {
+        width: 80%;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        width: 95%;
+        padding: 10px;
+    }
+    .button {
+        width: 4rem;
+        height: 4rem;
+    }
+}
