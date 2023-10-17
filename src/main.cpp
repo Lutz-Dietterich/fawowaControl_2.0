@@ -1,7 +1,9 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
-#include "DHT.h"
+#include <DHT.h>
+#include <LittleFS.h>
+
 
 #define DHTPIN 2
 #define RELAIS_PIN 5 
@@ -17,24 +19,64 @@ char password[64];  // Für das Passwort-Speicherplatz
 
 ESP8266WebServer server(80);
 
+void handleRoot();
+void handleData();
+void handleSetTargets();
+
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   dht.begin();
   pinMode(RELAIS_PIN, OUTPUT);
 
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi...");
-  }
-  Serial.println("Connected to WiFi");
 
+// Initialisieren Sie das LittleFS-Dateisystem
+  if (LittleFS.begin()) {
+    Serial.println("LittleFS initialisiert");
+
+    // Öffnen Sie die Konfigurationsdatei zum Lesen
+    File configFile = LittleFS.open("/config.txt", "r");
+    if (configFile) {
+      // Lesen Sie den SSID-Namen und das Passwort aus der Datei
+      String ssidFromFile = configFile.readStringUntil('\n');
+      String passwordFromFile = configFile.readStringUntil('\n');
+      configFile.close();
+
+      if (ssidFromFile.length() > 0 && passwordFromFile.length() > 0) {
+        ssidFromFile.toCharArray(ssid, sizeof(ssid));
+        passwordFromFile.toCharArray(password, sizeof(password));
+        Serial.println("SSID und Passwort aus der Datei geladen.");
+      } else {
+        Serial.println("Ungültige Daten in der Datei.");
+      }
+    } else {
+      Serial.println("Fehler beim Öffnen der Datei.");
+    }
+  } else {
+    Serial.println("Fehler beim Initialisieren des LittleFS-Dateisystems");
+  }
+
+    WiFi.begin(ssid, password);
+
+
+  // Überprüfen Sie den Status der WLAN-Verbindung
+  if (WiFi.status() == WL_CONNECTED) {
+    Serial.println("Verbunden mit WLAN");
+  } else {
+    Serial.println("Verbindung zum WLAN fehlgeschlagen");
+  }
+
+  Serial.println("ssid: "); Serial.println(ssid);
+  Serial.println("password: "); Serial.println(password);
+
+
+  // Starten Sie den Webserver
   server.on("/", HTTP_GET, handleRoot);
   server.on("/data", HTTP_GET, handleData);
   server.on("/setTargets", HTTP_GET, handleSetTargets);
-
   server.begin();
 }
+
+
 
 void loop() {
   server.handleClient();
