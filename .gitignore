@@ -3,4 +3,9 @@
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+
+# Eigene Einträge
 .DS_Store
+data/config.txt
+
+
