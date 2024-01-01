@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Temperatur- und Feuchtigkeitsüberwachung</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="styles.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="wrapper">
-        <div class="header-wrapper">
-            <header>
-                <h1>Fahrradwohnwagen Steuerung</h1>
-            </header>
+      <div class="header-wrapper">
+        <header>
+          <h1>Fahrradwohnwagen Steuerung</h1>
+        </header>
+      </div>
+      <div class="ist">
+        <div class="istWerte">
+          <h3 style="color: red" id="temp">Temperatur:</h3>
+          <h3 id="humidity">Luftfeuchtigkeit:</h3>
         </div>
-        <div class="ist">
-            <div class="istWerte">
-                <h3 style="color: red;" id="temp">Temperatur: </h3>
-                <h3 id="humidity">Luftfeuchtigkeit: </h3>
-            </div>
-            <div class="istWerte">
-                <h3 style="color: rgb(4, 255, 0);" id="temp">Temperatur: </h3>
-                <h3 id="humidity">Luftfeuchtigkeit: </h3>
-            </div>
+        <div class="istWerte">
+          <h3 style="color: rgb(4, 255, 0)" id="temp">Temperatur:</h3>
+          <h3 id="humidity">Luftfeuchtigkeit:</h3>
         </div>
-        <h3>Temperatur-Sollwert: <span id="targetTemp"></span></h3>
-        <div class="button-wrapper">
-            <button class="button" onclick="adjustTargetTemp(1)">+</button>
-            <button class="button" onclick="adjustTargetTemp(-1)">-</button>
-        </div>
-        <h3>Luftfeuchtigkeits-Sollwert: <span id="targetHumidity"></span></h3>
-        <button class="button" onclick="adjustTargetHumidity(1)">+</button>
-        <button class="button" onclick="adjustTargetHumidity(-1)">-</button>
-        <div>
-            <canvas id="tempChart" width="400" height="200"></canvas>
-            <canvas id="humidityChart" width="400" height="200"></canvas>
-        </div>
+      </div>
+      <h3>Temperatur-Sollwert: <span id="targetTemp"></span></h3>
+      <div class="button-wrapper">
+        <button class="button" onclick="adjustTargetTemp(1)">+</button>
+        <button class="button" onclick="adjustTargetTemp(-1)">-</button>
+      </div>
+      <h3>Luftfeuchtigkeits-Sollwert: <span id="targetHumidity"></span></h3>
+      <button class="button" onclick="adjustTargetHumidity(1)">+</button>
+      <button class="button" onclick="adjustTargetHumidity(-1)">-</button>
+      <div>
+        <canvas id="tempChart" width="400" height="200"></canvas>
+        <canvas id="humidityChart" width="400" height="200"></canvas>
+      </div>
     </div>
     <script src="scripts.js"></script>
-</body>
-
+  </body>
 </html>
